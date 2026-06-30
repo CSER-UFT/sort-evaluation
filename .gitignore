@@ -1,5 +1,6 @@
-benchmark_parallel
-benchmark_serial
-results/*.perf
-results/*.pdf
+*_parallel
+*_serial
+results/*.p1
+results/*.p2
+results/*.p3
 results/*.csv
