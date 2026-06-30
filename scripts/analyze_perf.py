@@ -486,9 +486,9 @@ def edp_heatmap():
     sub = S[S["Nnum"] == Nbig]
     for metric, fname, title in [
         ("edp_mean",  "edp_heatmap",
-         f"EDP (J·s) by algorithm $\times$ threads ($N={Nbig}$) — green = best per row"),
+         f"EDP (J·s) by algorithm x threads ($N={Nbig}$) — green = best per row"),
         ("ed2p_mean", "ed2p_heatmap",
-         f"ED$^2$P (J·s$^2$) by algorithm $\times$ threads ($N={Nbig}$) — green = best per row"),
+         f"ED$^2$P (J·s$^2$) by algorithm x threads ($N={Nbig}$) — green = best per row"),
     ]:
         if metric not in sub.columns:
             continue
