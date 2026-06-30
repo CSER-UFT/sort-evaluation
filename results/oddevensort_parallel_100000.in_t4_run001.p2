@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:25:38 2026
+
+
+ Performance counter stats for 'taskset -c 0-3 setarch x86_64 -R ./oddevensort_parallel inputs/100000.in 4':
+
+       324.567.638      instructions:u            #    0,12  insn per cycle         
+     2.767.449.077      cycles:u                                                    
+         1.257.555      L1-dcache-load-misses                                       
+               922      LLC-load-misses                                             
+             1.341      dTLB-load-misses                                            
+               956      iTLB-load-misses                                            
+
+       0,270890272 seconds time elapsed
+
+       0,840424000 seconds user
+       0,004060000 seconds sys
+
+

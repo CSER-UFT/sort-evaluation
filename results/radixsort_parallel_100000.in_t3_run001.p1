@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:17:37 2026
+
+
+ Performance counter stats for 'taskset -c 0-2 setarch x86_64 -R ./radixsort_parallel inputs/100000.in 3':
+
+        16.193.159      instructions:u            #    1,29  insn per cycle         
+        12.517.401      cycles:u                                                    
+         2.931.717      branches:u                                                  
+            16.863      branch-misses:u           #    0,58% of all branches        
+           497.572      cache-references:u                                          
+            16.433      cache-misses:u            #    3,303 % of all cache refs    
+
+       0,004113540 seconds time elapsed
+
+       0,006352000 seconds user
+       0,000000000 seconds sys
+
+

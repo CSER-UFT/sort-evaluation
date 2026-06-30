@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:14:39 2026
+
+
+ Performance counter stats for 'taskset -c 0 setarch x86_64 -R ./insertionsort_serial inputs/100000.in 1':
+
+        28.821.806      instructions:u            #    1,22  insn per cycle         
+        23.683.317      cycles:u                                                    
+         7.263.070      branches:u                                                  
+           540.613      branch-misses:u           #    7,44% of all branches        
+           150.650      cache-references:u                                          
+            12.445      cache-misses:u            #    8,261 % of all cache refs    
+
+       0,017458893 seconds time elapsed
+
+       0,017468000 seconds user
+       0,000000000 seconds sys
+
+

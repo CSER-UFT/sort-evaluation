@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:21:21 2026
+
+
+ Performance counter stats for 'taskset -c 0 setarch x86_64 -R ./oddevensort_serial inputs/10000000.in 1':
+
+    54.407.156.592      instructions:u            #    0,39  insn per cycle         
+   140.174.499.048      cycles:u                                                    
+       301.686.079      L1-dcache-load-misses                                       
+         5.270.497      LLC-load-misses                                             
+         4.495.836      dTLB-load-misses                                            
+               606      iTLB-load-misses                                            
+
+      40,763774180 seconds time elapsed
+
+      40,680273000 seconds user
+       0,051995000 seconds sys
+
+

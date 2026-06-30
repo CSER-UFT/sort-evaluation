@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:17:24 2026
+
+
+ Performance counter stats for 'taskset -c 0 setarch x86_64 -R ./countingsort_serial inputs/5000000.in 1':
+
+       481.715.792      instructions:u            #    1,64  insn per cycle         
+       293.031.365      cycles:u                                                    
+         7.179.936      L1-dcache-load-misses                                       
+         1.397.772      LLC-load-misses                                             
+           778.228      dTLB-load-misses                                            
+               617      iTLB-load-misses                                            
+
+       0,109238427 seconds time elapsed
+
+       0,085755000 seconds user
+       0,023387000 seconds sys
+
+

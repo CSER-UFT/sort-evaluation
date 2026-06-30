@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:15:48 2026
+
+
+ Performance counter stats for 'taskset -c 0-2 setarch x86_64 -R ./smoothsort_parallel inputs/500000.in 3':
+
+       319.998.890      instructions:u            #    1,01  insn per cycle         
+       316.051.466      cycles:u                                                    
+         7.577.254      L1-dcache-load-misses                                       
+             5.210      LLC-load-misses                                             
+             2.039      dTLB-load-misses                                            
+               691      iTLB-load-misses                                            
+
+       0,044588887 seconds time elapsed
+
+       0,094921000 seconds user
+       0,003650000 seconds sys
+
+

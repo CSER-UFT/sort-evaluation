@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:19:02 2026
+
+
+ Performance counter stats for 'taskset -c 0-3 setarch x86_64 -R ./bitonicsort_parallel inputs/5000000.in 4':
+
+    27.285.739.839      instructions:u            #    0,65  insn per cycle         
+    42.185.516.876      cycles:u                                                    
+     7.679.299.959      branches:u                                                  
+       103.642.126      branch-misses:u           #    1,35% of all branches        
+       305.516.547      cache-references:u                                          
+       216.246.687      cache-misses:u            #   70,781 % of all cache refs    
+
+       4,249784764 seconds time elapsed
+
+      12,825533000 seconds user
+       0,036049000 seconds sys
+
+

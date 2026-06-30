@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:16:16 2026
+
+
+ Performance counter stats for 'taskset -c 0-1 setarch x86_64 -R ./shellsort_parallel inputs/1000000.in 2':
+
+       879.600.865      instructions:u            #    1,48  insn per cycle         
+       593.258.866      cycles:u                                                    
+         8.003.054      L1-dcache-load-misses                                       
+            11.358      LLC-load-misses                                             
+             2.207      dTLB-load-misses                                            
+               605      iTLB-load-misses                                            
+
+       0,094978750 seconds time elapsed
+
+       0,173137000 seconds user
+       0,003934000 seconds sys
+
+

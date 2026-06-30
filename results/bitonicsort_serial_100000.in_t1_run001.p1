@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:17:44 2026
+
+
+ Performance counter stats for 'taskset -c 0 setarch x86_64 -R ./bitonicsort_serial inputs/100000.in 1':
+
+       227.691.049      instructions:u            #    1,64  insn per cycle         
+       138.851.277      cycles:u                                                    
+        62.447.524      branches:u                                                  
+         1.615.619      branch-misses:u           #    2,59% of all branches        
+         2.655.199      cache-references:u                                          
+            17.006      cache-misses:u            #    0,640 % of all cache refs    
+
+       0,043679273 seconds time elapsed
+
+       0,043689000 seconds user
+       0,000000000 seconds sys
+
+

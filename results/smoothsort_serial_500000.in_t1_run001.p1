@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:15:22 2026
+
+
+ Performance counter stats for 'taskset -c 0 setarch x86_64 -R ./smoothsort_serial inputs/500000.in 1':
+
+       332.108.321      instructions:u            #    1,22  insn per cycle         
+       272.273.741      cycles:u                                                    
+        57.216.431      branches:u                                                  
+         5.064.191      branch-misses:u           #    8,85% of all branches        
+        22.222.688      cache-references:u                                          
+            27.120      cache-misses:u            #    0,122 % of all cache refs    
+
+       0,094776260 seconds time elapsed
+
+       0,094784000 seconds user
+       0,000000000 seconds sys
+
+

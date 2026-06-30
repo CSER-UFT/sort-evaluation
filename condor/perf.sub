@@ -1,0 +1,228 @@
+universe   = vanilla
+executable = run_perf_job.sh
+arguments  = $(exe) $(input) $(threads)
+request_cpus = $(threads)
+getenv = True
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files  = run_perf_job.sh,$(exe),$(input)
+transfer_output_files = results
+output = condor/logs/$(Cluster)_$(Process).out
+error  = condor/logs/$(Cluster)_$(Process).err
+log    = condor/logs/$(Cluster).log
+
+# =====================================================
+# bottomupsort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,bottomupsort_serial,1
+inputs/input2.in,bottomupsort_serial,1
+inputs/input3.in,bottomupsort_serial,1
+inputs/input4.in,bottomupsort_serial,1
+inputs/input5.in,bottomupsort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,bottomupsort_parallel,2
+inputs/input2.in,bottomupsort_parallel,2
+inputs/input3.in,bottomupsort_parallel,2
+inputs/input4.in,bottomupsort_parallel,2
+inputs/input5.in,bottomupsort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,bottomupsort_parallel,3
+inputs/input2.in,bottomupsort_parallel,3
+inputs/input3.in,bottomupsort_parallel,3
+inputs/input4.in,bottomupsort_parallel,3
+inputs/input5.in,bottomupsort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,bottomupsort_parallel,4
+inputs/input2.in,bottomupsort_parallel,4
+inputs/input3.in,bottomupsort_parallel,4
+inputs/input4.in,bottomupsort_parallel,4
+inputs/input5.in,bottomupsort_parallel,4
+)
+
+# =====================================================
+# combsort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,combsort_serial,1
+inputs/input2.in,combsort_serial,1
+inputs/input3.in,combsort_serial,1
+inputs/input4.in,combsort_serial,1
+inputs/input5.in,combsort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,combsort_parallel,2
+inputs/input2.in,combsort_parallel,2
+inputs/input3.in,combsort_parallel,2
+inputs/input4.in,combsort_parallel,2
+inputs/input5.in,combsort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,combsort_parallel,3
+inputs/input2.in,combsort_parallel,3
+inputs/input3.in,combsort_parallel,3
+inputs/input4.in,combsort_parallel,3
+inputs/input5.in,combsort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,combsort_parallel,4
+inputs/input2.in,combsort_parallel,4
+inputs/input3.in,combsort_parallel,4
+inputs/input4.in,combsort_parallel,4
+inputs/input5.in,combsort_parallel,4
+)
+
+# =====================================================
+# insertionsort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,insertionsort_serial,1
+inputs/input2.in,insertionsort_serial,1
+inputs/input3.in,insertionsort_serial,1
+inputs/input4.in,insertionsort_serial,1
+inputs/input5.in,insertionsort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,insertionsort_parallel,2
+inputs/input2.in,insertionsort_parallel,2
+inputs/input3.in,insertionsort_parallel,2
+inputs/input4.in,insertionsort_parallel,2
+inputs/input5.in,insertionsort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,insertionsort_parallel,3
+inputs/input2.in,insertionsort_parallel,3
+inputs/input3.in,insertionsort_parallel,3
+inputs/input4.in,insertionsort_parallel,3
+inputs/input5.in,insertionsort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,insertionsort_parallel,4
+inputs/input2.in,insertionsort_parallel,4
+inputs/input3.in,insertionsort_parallel,4
+inputs/input4.in,insertionsort_parallel,4
+inputs/input5.in,insertionsort_parallel,4
+)
+
+# =====================================================
+# mergesort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,mergesort_serial,1
+inputs/input2.in,mergesort_serial,1
+inputs/input3.in,mergesort_serial,1
+inputs/input4.in,mergesort_serial,1
+inputs/input5.in,mergesort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,mergesort_parallel,2
+inputs/input2.in,mergesort_parallel,2
+inputs/input3.in,mergesort_parallel,2
+inputs/input4.in,mergesort_parallel,2
+inputs/input5.in,mergesort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,mergesort_parallel,3
+inputs/input2.in,mergesort_parallel,3
+inputs/input3.in,mergesort_parallel,3
+inputs/input4.in,mergesort_parallel,3
+inputs/input5.in,mergesort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,mergesort_parallel,4
+inputs/input2.in,mergesort_parallel,4
+inputs/input3.in,mergesort_parallel,4
+inputs/input4.in,mergesort_parallel,4
+inputs/input5.in,mergesort_parallel,4
+)
+
+# =====================================================
+# quicksort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,quicksort_serial,1
+inputs/input2.in,quicksort_serial,1
+inputs/input3.in,quicksort_serial,1
+inputs/input4.in,quicksort_serial,1
+inputs/input5.in,quicksort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,quicksort_parallel,2
+inputs/input2.in,quicksort_parallel,2
+inputs/input3.in,quicksort_parallel,2
+inputs/input4.in,quicksort_parallel,2
+inputs/input5.in,quicksort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,quicksort_parallel,3
+inputs/input2.in,quicksort_parallel,3
+inputs/input3.in,quicksort_parallel,3
+inputs/input4.in,quicksort_parallel,3
+inputs/input5.in,quicksort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,quicksort_parallel,4
+inputs/input2.in,quicksort_parallel,4
+inputs/input3.in,quicksort_parallel,4
+inputs/input4.in,quicksort_parallel,4
+inputs/input5.in,quicksort_parallel,4
+)
+
+# =====================================================
+# smoothsort
+# =====================================================
+# Serial - 1 CPU
+queue input,exe,threads from (
+inputs/input1.in,smoothsort_serial,1
+inputs/input2.in,smoothsort_serial,1
+inputs/input3.in,smoothsort_serial,1
+inputs/input4.in,smoothsort_serial,1
+inputs/input5.in,smoothsort_serial,1
+)
+# Parallel - 2 CPUs
+queue input,exe,threads from (
+inputs/input1.in,smoothsort_parallel,2
+inputs/input2.in,smoothsort_parallel,2
+inputs/input3.in,smoothsort_parallel,2
+inputs/input4.in,smoothsort_parallel,2
+inputs/input5.in,smoothsort_parallel,2
+)
+# Parallel - 3 CPUs
+queue input,exe,threads from (
+inputs/input1.in,smoothsort_parallel,3
+inputs/input2.in,smoothsort_parallel,3
+inputs/input3.in,smoothsort_parallel,3
+inputs/input4.in,smoothsort_parallel,3
+inputs/input5.in,smoothsort_parallel,3
+)
+# Parallel - 4 CPUs
+queue input,exe,threads from (
+inputs/input1.in,smoothsort_parallel,4
+inputs/input2.in,smoothsort_parallel,4
+inputs/input3.in,smoothsort_parallel,4
+inputs/input4.in,smoothsort_parallel,4
+inputs/input5.in,smoothsort_parallel,4
+)

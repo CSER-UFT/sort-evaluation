@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:14:17 2026
+
+
+ Performance counter stats for 'taskset -c 0-3 setarch x86_64 -R ./bottomupsort_parallel inputs/1000000.in 4':
+
+       355.687.559      instructions:u            #    0,84  insn per cycle         
+       421.219.423      cycles:u                                                    
+         2.589.299      L1-dcache-load-misses                                       
+            19.093      LLC-load-misses                                             
+             5.059      dTLB-load-misses                                            
+               784      iTLB-load-misses                                            
+
+       0,044578184 seconds time elapsed
+
+       0,135553000 seconds user
+       0,000000000 seconds sys
+
+

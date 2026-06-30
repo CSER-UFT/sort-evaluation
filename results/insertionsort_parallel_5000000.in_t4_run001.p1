@@ -1,0 +1,18 @@
+# started on Tue Jun 30 13:14:52 2026
+
+
+ Performance counter stats for 'taskset -c 0-3 setarch x86_64 -R ./insertionsort_parallel inputs/5000000.in 4':
+
+     1.646.163.331      instructions:u            #    1,12  insn per cycle         
+     1.476.113.059      cycles:u                                                    
+       421.343.740      branches:u                                                  
+        27.627.067      branch-misses:u           #    6,56% of all branches        
+        14.256.774      cache-references:u                                          
+         5.100.285      cache-misses:u            #   35,774 % of all cache refs    
+
+       0,230627439 seconds time elapsed
+
+       0,448038000 seconds user
+       0,011894000 seconds sys
+
+
