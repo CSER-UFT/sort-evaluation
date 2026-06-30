@@ -7,6 +7,8 @@ LOGS_DIR="condor/logs"
 mkdir -p "$RESULTS_DIR"
 mkdir -p "$LOGS_DIR"
 
+rm -rf results/*.p*
+
 echo "[INFO] Limpando e compilando..."
 make clean
 make

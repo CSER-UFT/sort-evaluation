@@ -278,7 +278,7 @@ def plot_speedup():
                            "color": COLORS[i % len(COLORS)],
                            "marker": MARKERS[i % len(MARKERS)]})
         if any(not np.all(np.isnan(c["y"])) for c in curves):
-            draw(curves, "Speedup (T_base / T_parallel)",
+            draw(curves, r"Speedup ($T_{base} / T_{parallel}$)",
                  f"Speedup - {algo} (mean +- {int(CONF_LEVEL*100)}% CI)",
                  f"{OUTDIR}/speedup/{algo}_speedup.pdf", with_err=True)
             saved += 1
