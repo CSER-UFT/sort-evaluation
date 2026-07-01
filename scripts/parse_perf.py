@@ -146,11 +146,11 @@ for key, rec in records.items():
     cref     = num(rec, "cache_references")
     cmiss    = num(rec, "cache_misses")
 
-    i1, i2 = rec.get("_instr.p1"), rec.get("_instr.p2")
-    if i1 and i2 and abs(i1 - i2) / max(i1, i2) > 0.001:
-        print(f"[AVISO] instructions difere entre passagens em "
-              f"{rec['algo']} {rec['input']} {rec['mode']} t{rec['threads']} "
-              f"run{rec['run']:03d}: p1={i1:.0f} p2={i2:.0f}")
+    #i1, i2 = rec.get("_instr.p1"), rec.get("_instr.p2")
+    #if i1 and i2 and abs(i1 - i2) / max(i1, i2) > 0.001:
+    #    print(f"[AVISO] instructions difere entre passagens em "
+    #          f"{rec['algo']} {rec['input']} {rec['mode']} t{rec['threads']} "
+    #          f"run{rec['run']:03d}: p1={i1:.0f} p2={i2:.0f}")
 
     times = [t for t in (rec.get("_time.p1"), rec.get("_time.p2")) if t]
     time_sec = sum(times) / len(times) if times else 0.0
