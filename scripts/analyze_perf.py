@@ -21,6 +21,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+# Padroniza todas as figuras num unico lugar.
 plt.rcParams['figure.dpi'] = 300
 plt.rcParams['figure.figsize'] = (8, 5)
 plt.rcParams['font.size'] = 12
@@ -134,7 +135,7 @@ def complexity():
                     label=f"{algo} (k≈{slope:.2f})")
         ax.set_xscale("log"); ax.set_yscale("log")
         ax.set_xlabel("N (input size)"); ax.set_ylabel(ylabel)
-        ax.set_title(f"Empirical complexity — {ylabel} vs $N$ (log-log, {BASE_MODE} t{BASE_THREADS})")
+        ax.set_title(f"Empirical complexity — {ylabel} vs N (log-log, {BASE_MODE} t{BASE_THREADS})")
         ax.grid(True, which="both", linestyle="--", alpha=0.4)
         ax.legend(bbox_to_anchor=(1.02, 1), loc="upper left", fontsize=8)
         save(fig, "complexity", fname)
@@ -165,7 +166,7 @@ def scalability_heatmap():
     im = ax.imshow(M, aspect="auto", cmap="RdYlGn", vmin=0, vmax=1)
     ax.set_xticks(range(len(thr))); ax.set_xticklabels([f"{t}t" for t in thr])
     ax.set_yticks(range(len(algos))); ax.set_yticklabels(algos)
-    ax.set_title("Parallel efficiency (speedup/threads), mean over $N$")
+    ax.set_title("Parallel efficiency (speedup/threads), mean over N")
     annotate_heatmap(ax, M, "{:.2f}", thr=0.5)
     fig.colorbar(im, ax=ax, label="efficiency")
     save(fig, "scalability", "efficiency_heatmap")
@@ -213,7 +214,7 @@ def speedup_and_amdahl():
     lim = max(threads_all)
     ax.plot([1, lim], [1, lim], "k--", alpha=0.5, label="ideal (y=x)")
     ax.set_xlabel("threads"); ax.set_ylabel("speedup")
-    ax.set_title(f"Speedup vs threads ($N={Nbig}$) with ideal line")
+    ax.set_title(f"Speedup vs threads (N={Nbig}) with ideal line")
     ax.grid(True, linestyle="--", alpha=0.4)
     ax.legend(bbox_to_anchor=(1.02, 1), loc="upper left", fontsize=8)
     save(fig, "scalability", "speedup_vs_threads")
@@ -227,7 +228,7 @@ def speedup_and_amdahl():
         ax.barh(range(len(names)), fs, color=cols)
         ax.set_yticks(range(len(names))); ax.set_yticklabels(names)
         ax.set_xlabel("estimated serial fraction f (Amdahl)")
-        ax.set_title(f"Serial fraction per algorithm ($N={Nbig}$) — lower $f$ scales better")
+        ax.set_title(f"Serial fraction per algorithm (N={Nbig}) — lower f scales better")
         ax.grid(True, axis="x", linestyle="--", alpha=0.4)
         for i, v in enumerate(fs):
             if pd.notna(v):
@@ -256,7 +257,7 @@ def microarch_scatter():
             ax.annotate(r["algo"], (r[xcol], r["ipc_mean"]),
                         fontsize=7, xytext=(4, 4), textcoords="offset points")
         ax.set_xlabel(xlabel); ax.set_ylabel("IPC")
-        ax.set_title(f"Microarchitecture fingerprint ($N={Nbig}$, {BASE_MODE})")
+        ax.set_title(f"Microarchitecture fingerprint (N={Nbig}, {BASE_MODE})")
         ax.grid(True, linestyle="--", alpha=0.4)
         ax.legend(title="family", fontsize=8)
         save(fig, "microarch", fname)
@@ -287,7 +288,7 @@ def microarch_heatmap():
     ax.set_xticks(range(len(cols)))
     ax.set_xticklabels([c.replace("_mean", "") for c in cols], rotation=45, ha="right", fontsize=8)
     ax.set_yticks(range(len(names))); ax.set_yticklabels(names, fontsize=8)
-    ax.set_title(f"Normalized counter portrait ($N={Nbig}$) — sorted by family")
+    ax.set_title(f"Normalized counter portrait (N={Nbig}) — sorted by family")
     fig.colorbar(im, ax=ax, label="min-max per column")
     save(fig, "microarch", "counter_fingerprint")
 
@@ -306,7 +307,7 @@ def memory_pressure():
     ax.set_yscale("log")
     ax.set_xticks(x + 0.4 - w / 2); ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
     ax.set_ylabel("misses (log, +1)")
-    ax.set_title(f"Memory hierarchy pressure ($N={Nbig}$, {BASE_MODE})")
+    ax.set_title(f"Memory hierarchy pressure (N={Nbig}, {BASE_MODE})")
     ax.legend(fontsize=8); ax.grid(True, axis="y", linestyle="--", alpha=0.4)
     save(fig, "memory", "memory_hierarchy")
 
@@ -336,7 +337,7 @@ def distributions():
         for patch, algo in zip(bp["boxes"], names):
             patch.set_facecolor(color_for(algo)); patch.set_alpha(0.6)
         ax.set_ylabel(ylabel)
-        ax.set_title(f"Distribution over repetitions ($N={Nbig}$, {BASE_MODE})")
+        ax.set_title(f"Distribution over repetitions (N={Nbig}, {BASE_MODE})")
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right", fontsize=8)
         ax.grid(True, axis="y", linestyle="--", alpha=0.4)
         save(fig, "distributions", fname)
@@ -396,7 +397,7 @@ def reproducibility():
     ax.set_yscale("log")
     ax.set_xticks(x + 0.4 - w / 2); ax.set_xticklabels(D.index, rotation=45, ha="right", fontsize=8)
     ax.set_ylabel("coef. of variation (log)")
-    ax.set_title(r"Reproducibility: CV per algorithm (instructions $\approx$ 0 validates the method)")
+    ax.set_title("Reproducibility: CV per algorithm (instructions ≈ 0 validates the method)")
     ax.legend(fontsize=8); ax.grid(True, axis="y", linestyle="--", alpha=0.4)
     save(fig, "reproducibility", "cv_by_algorithm")
 
@@ -421,9 +422,9 @@ def energy_scaling():
     sub = S[S["Nnum"] == Nbig]
     for metric, ylabel, fname, title in [
         ("energy_total_joules_mean", "Energy (J)", "energy_vs_threads",
-         f"Total energy vs threads ($N={Nbig}$) — does not drop like time"),
+         f"Total energy vs threads (N={Nbig}) — does not drop like time"),
         ("power_watts_mean", "Average power (W)", "power_vs_threads",
-         f"Average power vs threads ($N={Nbig}$) — rises with active cores"),
+         f"Average power vs threads (N={Nbig}) — rises with active cores"),
     ]:
         if metric not in sub.columns:
             continue
@@ -480,7 +481,7 @@ def energy_time_pareto():
         ax.plot([p[0] for p in front], [p[1] for p in front],
                 "k--", alpha=0.6, label="Pareto front", zorder=2)
     ax.set_xlabel("Time (s)"); ax.set_ylabel("Energy (J)")
-    ax.set_title(f"Energy-time trade-off ($N={Nbig}$, all thread counts)")
+    ax.set_title(f"Energy-time trade-off (N={Nbig}, all thread counts)")
     ax.grid(True, linestyle="--", alpha=0.4)
     ax.legend(fontsize=8)
     save(fig, "energy", "energy_time_pareto")
@@ -491,9 +492,9 @@ def edp_heatmap():
     sub = S[S["Nnum"] == Nbig]
     for metric, fname, title in [
         ("edp_mean",  "edp_heatmap",
-         f"EDP (J·s) by algorithm x threads ($N={Nbig}$) — green = best per row"),
+         f"EDP (J·s) by algorithm × threads (N={Nbig}) — green = best per row"),
         ("ed2p_mean", "ed2p_heatmap",
-         f"ED$^2$P (J·s$^2$) by algorithm x threads ($N={Nbig}$) — green = best per row"),
+         f"ED²P (J·s²) by algorithm × threads (N={Nbig}) — green = best per row"),
     ]:
         if metric not in sub.columns:
             continue
@@ -553,7 +554,7 @@ def energy_breakdown():
     ax.bar(x, ram, bottom=pkg, color="#f58518", label="DRAM")
     ax.set_xticks(x); ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
     ax.set_ylabel("Energy (J)")
-    ax.set_title(f"Energy breakdown: package vs DRAM ($N={Nbig}$, serial)")
+    ax.set_title(f"Energy breakdown: package vs DRAM (N={Nbig}, serial)")
     ax.legend(fontsize=8); ax.grid(True, axis="y", linestyle="--", alpha=0.4)
     save(fig, "energy", "energy_breakdown_stacked")
 
@@ -564,8 +565,8 @@ def energy_breakdown():
     fig, ax = plt.subplots(figsize=(9, 0.45 * len(nn) + 1.5))
     ax.barh(range(len(nn)), ff, color=[color_for(a) for a in nn])
     ax.set_yticks(range(len(nn))); ax.set_yticklabels(nn)
-    ax.set_xlabel(r"DRAM energy share  ($E_{RAM} / E_{total}$)")
-    ax.set_title(f"Share of energy spent in DRAM ($N={Nbig}$, serial) — higher = more memory-bound")
+    ax.set_xlabel("DRAM energy share  (E_ram / E_total)")
+    ax.set_title(f"Share of energy spent in DRAM (N={Nbig}, serial) — higher = more memory-bound")
     ax.grid(True, axis="x", linestyle="--", alpha=0.4)
     for i, v in enumerate(ff):
         ax.text(v, i, f" {v*100:.0f}%", va="center", fontsize=8)

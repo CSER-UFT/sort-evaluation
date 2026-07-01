@@ -4,17 +4,18 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plt.rcParams['figure.dpi'] = 300
-plt.rcParams['figure.figsize'] = (5, 5)
-plt.rcParams['font.size'] = 12
-plt.rcParams['figure.autolayout'] = True
-
 # scipy e opcional: se ausente, usa aproximacao normal (1,96) para o IC 95%.
 try:
     from scipy import stats
     HAVE_SCIPY = True
 except ImportError:
     HAVE_SCIPY = False
+
+# Padroniza todas as figuras num unico lugar.
+plt.rcParams['figure.dpi'] = 300
+plt.rcParams['figure.figsize'] = (8, 5)
+plt.rcParams['font.size'] = 12
+plt.rcParams['figure.autolayout'] = True
 
 # =============================================================================
 # Configuracao
@@ -33,6 +34,11 @@ PLOT_SPEEDUP = True    # speedup vs baseline
 BASELINE_MODE = "serial"
 
 CONF_LEVEL = 0.95
+
+# Escala do eixo X (input/N). "log" e recomendado quando N varia em ordens de
+# grandeza (ex.: 1e5..1e7), pois espaca as potencias de dez uniformemente e evita
+# rotulos sobrepostos. Use "linear" quando os N forem proximos/uniformes.
+XSCALE = "log"
 
 # Metricas plotadas: (coluna_no_csv, rotulo_do_eixo_y)
 METRICS = [
@@ -139,8 +145,8 @@ def series(algo, threads, metric):
 # Rotina generica de plotagem (linhas vs input)
 # =============================================================================
 def draw(curves, ylabel, title, outpath, with_err):
-    x = np.arange(len(inputs))
-    #plt.figure(figsize=(10, 6))
+    x = np.array([input_num(inp) for inp in inputs], dtype=float)  # N real, nao indice
+    plt.figure(figsize=(10, 6))
     plotted = False
     for c in curves:
         if np.all(np.isnan(c["y"])):
@@ -155,8 +161,9 @@ def draw(curves, ylabel, title, outpath, with_err):
                      label=c["label"], linewidth=1.5, markersize=6)
     if not plotted:
         plt.close(); return
-    plt.xticks(x, inputs)
-    plt.xlabel("Input")
+    plt.xscale(XSCALE)
+    plt.xticks(x, inputs, rotation=45)
+    plt.xlabel("Input size (N)")
     plt.ylabel(ylabel)
     plt.title(title)
     plt.grid(True, linestyle="--", alpha=0.5)
@@ -278,7 +285,7 @@ def plot_speedup():
                            "color": COLORS[i % len(COLORS)],
                            "marker": MARKERS[i % len(MARKERS)]})
         if any(not np.all(np.isnan(c["y"])) for c in curves):
-            draw(curves, r"Speedup ($T_{base} / T_{parallel}$)",
+            draw(curves, "Speedup (T_base / T_parallel)",
                  f"Speedup - {algo} (mean +- {int(CONF_LEVEL*100)}% CI)",
                  f"{OUTDIR}/speedup/{algo}_speedup.pdf", with_err=True)
             saved += 1

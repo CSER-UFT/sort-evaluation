@@ -21,7 +21,7 @@ INPUTS=(
     inputs/10000.in
     inputs/50000.in
     inputs/100000.in
-    inputs/500000.in
+    #inputs/500000.in
     #inputs/1000000.in
     #inputs/5000000.in
     #inputs/10000000.in
