@@ -21,6 +21,11 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+plt.rcParams['figure.dpi'] = 300
+plt.rcParams['figure.figsize'] = (8, 5)
+plt.rcParams['font.size'] = 12
+plt.rcParams['figure.autolayout'] = True
+
 warnings.filterwarnings("ignore")
 
 # ============================= Configuracao =============================

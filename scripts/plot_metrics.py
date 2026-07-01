@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 plt.rcParams['figure.dpi'] = 300
-plt.rcParams['figure.figsize'] = (8, 5)
+plt.rcParams['figure.figsize'] = (5, 5)
 plt.rcParams['font.size'] = 12
 plt.rcParams['figure.autolayout'] = True
 
@@ -140,7 +140,7 @@ def series(algo, threads, metric):
 # =============================================================================
 def draw(curves, ylabel, title, outpath, with_err):
     x = np.arange(len(inputs))
-    plt.figure(figsize=(10, 6))
+    #plt.figure(figsize=(10, 6))
     plotted = False
     for c in curves:
         if np.all(np.isnan(c["y"])):
